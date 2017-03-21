@@ -18,7 +18,7 @@ class LoginModel {
             $this->username = Filter::alpha($data['username']);
         }
 
-        if (isset($data['password']) && is_string($data['password']) && mb_strlen($data['password']) > 6) {
+        if (isset($data['password']) && is_string($data['password']) && mb_strlen($data['password']) > 5) {
             $this->password = sha1(md5($data['password']));
         }
 
