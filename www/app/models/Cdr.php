@@ -41,9 +41,9 @@ class CdrModel {
             }
 
             if (isset($where['caller']) || isset($where['called'])) {
-                $sql .= 'AND duration > :duration AND create_time BETWEEN :begin AND :end ORDER BY id LIMIT 150';
+                $sql .= 'AND duration > :duration AND create_time BETWEEN :begin AND :end ORDER BY id DESC LIMIT 150';
             } else {
-                $sql .= 'duration > :duration AND create_time BETWEEN :begin AND :end ORDER BY id LIMIT 150';
+                $sql .= 'duration > :duration AND create_time BETWEEN :begin AND :end ORDER BY id DESC LIMIT 150';
             }
 
             $sth = $this->db->prepare($sql);
