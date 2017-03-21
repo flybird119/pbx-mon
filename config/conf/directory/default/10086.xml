@@ -1,0 +1,17 @@
+<include>
+  <user id="10086">
+    <params>
+      <param name="password" value="10086@typefo"/>
+      <param name="vm-password" value="10086"/>
+    </params>
+    <variables>
+      <variable name="toll_allow" value="domestic,international,local"/>
+      <variable name="accountcode" value="10086"/>
+      <variable name="user_context" value="default"/>
+      <variable name="effective_caller_id_name" value="Extension 10086"/>
+      <variable name="effective_caller_id_number" value="10086"/>
+      <variable name="outbound_caller_id_name" value="$${outbound_caller_name}"/>
+      <variable name="outbound_caller_id_number" value="$${outbound_caller_id}"/>
+    </variables>
+  </user>
+</include>

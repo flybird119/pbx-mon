@@ -1,0 +1,28 @@
+<include>
+  <configuration name="json_cdr.conf" description="JSON CDR">
+    <settings>
+
+      <param name="log-b-leg" value="false"/>
+      <param name="prefix-a-leg" value="false"/>
+      <param name="encode-values" value="true"/>
+      <param name="log-http-and-disk" value="false"/>
+      <param name="log-dir" value="/tmp"/>
+      <param name="rotate" value="false"/>
+      <param name="url" value="http://127.0.0.1:8080/cdr.php"/>
+      <param name="auth-scheme" value="any"/>
+      <param name="cred" value=""/>
+      <param name="encode" value="false"/>
+      <param name="retries" value="1"/>
+      <param name="delay" value="3"/>
+      <param name="disable-100-continue" value="false"/>
+      <param name="err-log-dir" value="/tmp"/>
+      <param name="ssl-key-path" value=""/>
+      <param name="ssl-key-password" value=""/>
+      <param name="ssl-version" value=""/>
+      <param name="enable-ssl-verifyhost" value="false"/>
+      <param name="ssl-cert-path" value=""/>
+      <param name="enable-cacert-check" value="false"/>
+      <param name="ssl-cacert-file" value=""/>
+    </settings>
+  </configuration>
+</include>
