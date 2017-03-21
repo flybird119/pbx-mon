@@ -9,7 +9,6 @@
 class Bootstrap extends Yaf\Bootstrap_Abstract{
 
     public function _initConfig() {
-
 		$this->config = Yaf\Application::app()->getConfig();
 		Yaf\Registry::set('config', $this->config);
 	}
@@ -38,9 +37,5 @@ class Bootstrap extends Yaf\Bootstrap_Abstract{
 	public function _initAuth(Yaf\Dispatcher $dispatcher) {
 		$authPlugin = new AuthPlugin();
 		$dispatcher->registerPlugin($authPlugin);
-	}
-
-	public function _initView(Yaf\Dispatcher $dispatcher){
-
 	}
 }
