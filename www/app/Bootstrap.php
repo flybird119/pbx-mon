@@ -2,8 +2,7 @@
 
 /*
  * Yaf bootstrap
- * author: typefo
- * e-mail: typefo@qq.com
+ * by typefo typefo@qq.com
  */
 
 class Bootstrap extends Yaf\Bootstrap_Abstract{
