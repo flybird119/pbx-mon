@@ -1,6 +1,7 @@
 基于 FreeSWITCH 的录音质检系统
 
 操作系统: CentOS 7.2
+PBX系统： FreeSWITCH 1.6.15
 数据库 :  MySQL 5.5
 PHP框架:  Yaf 2.3.5
 
