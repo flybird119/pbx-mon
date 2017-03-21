@@ -2,8 +2,8 @@
 
 /*
  * application
- * author: typefo
- * e-mail: typefo@qq.com
+ * Link http://github.com/typefo/pbx-mon
+ * By typefo <typefo@qq.com>
  */
 
 define('APP_PATH', dirname(dirname(__FILE__)));

@@ -2,7 +2,8 @@
 
 /*
  * Yaf bootstrap
- * by typefo typefo@qq.com
+ * Link http://github.com/typefo/pbx-mon
+ * By typefo <typefo@qq.com>
  */
 
 class Bootstrap extends Yaf\Bootstrap_Abstract{

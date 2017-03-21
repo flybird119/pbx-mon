@@ -2,8 +2,8 @@
 
 /*
  * The User Model
- * author: typefo
- * e-mail: typefo@qq.com
+ * Link http://github.com/typefo/pbx-mon
+ * By typefo <typefo@qq.com>
  */
 
 use Tool\Filter;

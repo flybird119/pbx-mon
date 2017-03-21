@@ -2,8 +2,8 @@
 
 /*
  * The Auth Plugin
- * author: typefo
- * e-mail: typefo@qq.com
+ * Link http://github.com/typefo/pbx-mon
+ * By typefo <typefo@qq.com>
  */
 
 class AuthPlugin extends Yaf\Plugin_Abstract {

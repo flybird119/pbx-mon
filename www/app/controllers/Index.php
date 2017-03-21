@@ -2,8 +2,8 @@
 
 /*
  * The Index Controller
- * author: typefo
- * e-mail: typefo@qq.com
+ * Link http://github.com/typefo/pbx-mon
+ * By typefo <typefo@qq.com>
  */
 
 class IndexController extends Yaf\Controller_Abstract {
