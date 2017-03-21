@@ -2,8 +2,8 @@
 
 /*
  * The mod json cdr request
- * author: typefo
- * e-mail: typefo@qq.com
+ * Link http://github.com/typefo/pbx-mon
+ * By typefo <typefo@qq.com>
  */
 
 // load configure file
