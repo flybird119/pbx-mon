@@ -7,9 +7,9 @@ PHP框架:  Yaf 2.3.5
 
 相关目录说明:
 cdr             通话记录 API 系统，安装位置 /var/cdr
+www             后台 Web 管理系统，安装位置 /var/www
 config          Nginx、PHP 和 FreeSWITCH 的配置文件
 scripte         MySQL 数据库表 SQL 文件
-www             后台 Web 管理系统，安装位置 /var/www
 package         Yaf 框架以及相关软件包
 
 默认 Web 后台账号/密码:
