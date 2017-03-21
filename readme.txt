@@ -1,8 +1,8 @@
 基于 FreeSWITCH 的录音质检系统
 
 操作系统: CentOS 7.2
-数据库  : MySQL 5.5
-PHP框架 : Yaf 2.3.5
+数据库 :  MySQL 5.5
+PHP框架:  Yaf 2.3.5
 
 相关目录说明:
 cdr             通话记录 API 系统，安装位置 /var/cdr
