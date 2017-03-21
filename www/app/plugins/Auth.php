@@ -1,7 +1,7 @@
 <?php
 
 /*
- * The mod json cdr request
+ * The Auth Plugin
  * author: typefo
  * e-mail: typefo@qq.com
  */

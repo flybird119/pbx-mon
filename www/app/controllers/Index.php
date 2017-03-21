@@ -1,7 +1,7 @@
 <?php
 
 /*
- * The mod json cdr request
+ * The Index Controller
  * author: typefo
  * e-mail: typefo@qq.com
  */
