@@ -1,7 +1,7 @@
 <?php
 
 /*
- * The mod json cdr request
+ * Yaf bootstrap
  * author: typefo
  * e-mail: typefo@qq.com
  */
