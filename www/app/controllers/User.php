@@ -27,7 +27,7 @@ class UserController extends Yaf\Controller_Abstract {
                            '<span aria-hidden="true">&times;</span></button>'.
                            '<strong>警告: </strong> 密码修改失败，请检查原始密码是否正确，新密码长度必须大于 6 位 </div>';
             }
-	    }
+        }
 
 	    $this->getView()->assign("message", $message);
         return true;
