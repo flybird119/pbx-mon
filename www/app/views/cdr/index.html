@@ -52,52 +52,51 @@
             <label>通话时间: </label>
 	        <?php
 	          if (isset($where['begin'])) {
-              echo '<input type="text" id="start" class="form-control input-sm start" name="begin" value="',$where['begin'],'" />';
+                echo '<input type="text" id="start" class="form-control input-sm start" name="begin" value="',$where['begin'],'" />';
 	          } else {
-              echo '<input type="text" id="start" class="form-control input-sm start" name="begin" value="',date('Y-m-d 08:00:00'),'" />';
+                echo '<input type="text" id="start" class="form-control input-sm start" name="begin" value="',date('Y-m-d 08:00:00'),'" />';
 	          }
-	          ?>
-
+	        ?>
           </div>
           -
           <div class="form-group">
 	        <?php
 	          if (isset($where['end'])) {
-	          echo '<input type="text" id="end" class="form-control input-sm end" name="end" value="',$where['end'],'" />';
+	            echo '<input type="text" id="end" class="form-control input-sm end" name="end" value="',$where['end'],'" />';
 	          } else {
-	      	  echo '<input type="text" id="end" class="form-control input-sm end" name="end" value="',date('Y-m-d 08:00:00'),'" />';
+	      	    echo '<input type="text" id="end" class="form-control input-sm end" name="end" value="',date('Y-m-d 08:00:00'),'" />';
 	          }
-	          ?>
+	        ?>
           </div>
           <div class="form-group">
             <label>主叫号码: </label>
 	        <?php
 	          if (isset($where['caller'])) {
-	          echo '<input type="text" class="form-control input-sm caller" placeholder="请输入主叫号码" name="caller" value="',$where['caller'],'" />';
+	            echo '<input type="text" class="form-control input-sm caller" placeholder="请输入主叫号码" name="caller" value="',$where['caller'],'" />';
 	          } else {
-	          echo '<input type="text" class="form-control input-sm caller" placeholder="请输入主叫号码" name="caller" value=""/>';
+	            echo '<input type="text" class="form-control input-sm caller" placeholder="请输入主叫号码" name="caller" value=""/>';
 	          }
-	          ?>
+	        ?>
           </div>
           <div class="form-group">
             <label>被叫号码: </label>
 	        <?php
 	          if (isset($where['called'])) {
-	          echo '<input type="text" class="form-control input-sm called" placeholder="请输入被叫号码" name="called" value="',$where['called'],'" />';
+	            echo '<input type="text" class="form-control input-sm called" placeholder="请输入被叫号码" name="called" value="',$where['called'],'" />';
 	          } else {
-	          echo '<input type="text" class="form-control input-sm called" placeholder="请输入被叫号码" name="called" value=""/>';
+	            echo '<input type="text" class="form-control input-sm called" placeholder="请输入被叫号码" name="called" value=""/>';
 	          }
-	          ?>
+	        ?>
           </div>
           <div class="form-group">
             <label>通话时长: </label>
 	        <?php
 	          if (isset($where['duration'])) {
-	          echo '<input type="number" class="form-control input-sm talktime" name="duration" min="0" value="',$where['duration'],'" />';
+	            echo '<input type="number" class="form-control input-sm talktime" name="duration" min="0" value="',$where['duration'],'" />';
 	          } else {
-	          echo '<input type="number" class="form-control input-sm talktime" name="duration" min="0" value="0" />';
+	            echo '<input type="number" class="form-control input-sm talktime" name="duration" min="0" value="0" />';
 	          }
-	          ?>
+	        ?>
           </div>
           <button type="submit" id="query" class="btn btn-success btn-sm">查 询</button>
         </form>
@@ -110,11 +109,11 @@
           <tbody>
 	        <?php
 	          if ($data) {
-	          foreach ($data as $obj) {
-              echo '<tr><td>',$obj['id'],'</td><td>',$obj['caller'],'</td><td>',$obj['called'],'</td><td>',gmstrftime('%H:%M:%S', $obj['duration']),'</td><td>',$obj['create_time'],'</td><td><a href="javascript:;" onClick="show(',"'",$obj['file'],"'",')"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> 试 听</a></td><td><a href="/record/',$obj['file'],'">本地下载</a></td></tr>';
+	            foreach ($data as $obj) {
+                  echo '<tr><td>',$obj['id'],'</td><td>',$obj['caller'],'</td><td>',$obj['called'],'</td><td>',gmstrftime('%H:%M:%S', $obj['duration']),'</td><td>',$obj['create_time'],'</td><td><a href="javascript:;" onClick="show(',"'",$obj['file'],"'",')"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> 试 听</a></td><td><a href="/record/',$obj['file'],'">本地下载</a></td></tr>';
+	            }
 	          }
-	          }
-              ?>
+            ?>
           </tbody>
         </table>
       </div>

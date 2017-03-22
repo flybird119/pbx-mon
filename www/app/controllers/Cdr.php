@@ -17,7 +17,7 @@ class CdrController extends Yaf\Controller_Abstract {
 	
         $where = $request->getQuery();
 
-        if ($request->isQuery() && isset($where['sub'])) {
+        if (isset($where['sub'])) {
             $this->getView()->assign("data", $cdr->query($where));
             $this->getView()->assign("where", $this->check($where));
         } else {
