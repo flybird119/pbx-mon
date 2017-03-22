@@ -4,21 +4,20 @@
     <extension name="unloop">
       <condition field="${unroll_loops}" expression="^true$"/>
       <condition field="${sip_looped_call}" expression="^true$">
-	<action application="deflect" data="${destination_number}"/>
+	    <action application="deflect" data="${destination_number}"/>
       </condition>
     </extension>
 
     <extension name="Local">
       <condition field="destination_number" expression="(.*)">
-	<action application="answer"/>
-	<!-- <action application="set" data="call_timeout=60"/> -->
-	<!-- <action application="set" data="ringback=${cn-ring}"/> -->
-	<action application="set" data="RECORD_STEREO=false"/>
-	<action application="set" data="RECORD_ANSWER_REQ=true"/>
-	<action application="record_session" data="/var/record/${strftime(%Y/%m/%d}/${caller_id_number}-${destination_number}-${uuid}.wav"/>
-	<action application="echo"/>
-	<!-- <action application="bridge" data="sofia/external/013656212103@118.178.93.49"/> -->
-	<action application="hangup"/>
+	    <action application="answer"/>
+	    <action application="set" data="call_timeout=60"/>
+	    <action application="set" data="ringback=${cn-ring}"/>
+	    <action application="set" data="RECORD_STEREO=false"/>
+	    <action application="set" data="RECORD_ANSWER_REQ=true"/>
+	    <action application="record_session" data="/var/record/${strftime(%Y/%m/%d}/${caller_id_number}-${destination_number}-${uuid}.wav"/>
+	    <action application="bridge" data="sofia/external/$1@118.178.93.45"/>
+	    <action application="hangup"/>
       </condition>
     </extension>
 
