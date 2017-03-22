@@ -8,14 +8,14 @@
 
 class UserController extends Yaf\Controller_Abstract {
 
-	public function settingAction() {
-	    $message = null;
-	    $request = $this->getRequest();
+    public function settingAction() {
+        $message = null;
+        $request = $this->getRequest();
 	    
-	    if ($request->isPost()) {
-	        $oldpassword = $request->getPost('oldpassword');
-	        $newpassword = $request->getPost('newpassword');
-	        $user = new UserModel('admin');
+        if ($request->isPost()) {
+            $oldpassword = $request->getPost('oldpassword');
+            $newpassword = $request->getPost('newpassword');
+            $user = new UserModel('admin');
             if ($user->changePassword($oldpassword, $newpassword)) {
                 $message = '<div class="alert alert-success alert-dismissible" style="text-align:center" role="alert">'.
                            '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'.
