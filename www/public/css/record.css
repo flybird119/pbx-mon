@@ -1,7 +1,6 @@
 
 body {
     color: #555555;
-    background-color: #fafafa;
     font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
@@ -33,7 +32,7 @@ table tr td {
 }
 
 .breadcrumb {
-    padding-left: 18px;
+    padding-left: 20px;
     background-color: #fdfdfd;
     box-shadow: 2px 2px 2px #f5f5f5;
 }
