@@ -22,6 +22,12 @@
           <a class="navbar-brand" href="/cdr">录音监控系统 Record Monitor System</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/cdr">录音查询</a></li>
+            <li><a href="/access/status">对接网关</a></li>
+            <li><a href="/gateway/status">落地网关</a></li>
+            <li><a href="/report">数据报表</a></li>
+          </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/user/setting"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 账号设置</a></li>
             <li><a href="/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 退 出</a></li>
@@ -41,33 +47,33 @@
     <div class="container">
       <div class="row"><?php if ($message) echo $message; ?></div>
       <form class="form-horizontal" action="/user/setting" method="post">
-	<div class="form-group">
-	  <label class="col-sm-4 col-md-4 control-label">当前账户 : </label>
-	  <div class="col-sm-1">
-	    <p class="form-control-static"> <b>admin</b></p>
-	  </div>
-	  <div class="col-sm-2 col-md-2">
-	    <p class="form-control-static text-muted">默认不可修改</p>
-	  </div>
-	</div>
-	<div class="form-group">
-	  <label class="col-sm-4 col-md-4 control-label"> 原始密码 : </label>
-	  <div class="col-sm-4 col-md-4">
-	    <input type="password" class="form-control" placeholder="old password" name="oldpassword" />
-	  </div>
-	</div>
+	    <div class="form-group">
+	      <label class="col-sm-4 col-md-4 control-label">当前账户 : </label>
+	      <div class="col-sm-1">
+	        <p class="form-control-static"> <b>admin</b></p>
+	      </div>
+	      <div class="col-sm-2 col-md-2">
+	        <p class="form-control-static text-muted">默认不可修改</p>
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <label class="col-sm-4 col-md-4 control-label"> 原始密码 : </label>
+	      <div class="col-sm-4 col-md-4">
+	        <input type="password" class="form-control" placeholder="old password" name="oldpassword" />
+	      </div>
+	    </div>
         <div class="form-group">
           <label class="col-sm-4 col-md-4 control-label"> 新的密码 : </label>
           <div class="col-sm-4 col-md-4">
             <input type="password" class="form-control" placeholder="new password" name="newpassword" />
           </div>
         </div>
-	<div class="form-group">
-	  <div class="col-sm-offset-4 col-sm-4 col-md-4">
-	    <button type="submit" class="btn btn-success" style="width:80px">确 认</button>
-	    <button type="reset" class="btn btn-default" style="width:80px;margin-left:20px">取 消</button>
-	  </div>
-	</div>
+	    <div class="form-group">
+	      <div class="col-sm-offset-4 col-sm-4 col-md-4">
+	        <button type="submit" class="btn btn-success" style="width:80px">确 认</button>
+	        <button type="reset" class="btn btn-default" style="width:80px;margin-left:20px">取 消</button>
+	      </div>
+	    </div>
       </form>
     </div>
   </body>

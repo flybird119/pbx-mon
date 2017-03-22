@@ -23,18 +23,11 @@ table tr td {
 
 .main {
     margin-top: -5px;
-    border-color: #f8f8f8;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    background-color: #fefefe;
-    box-shadow: 2px 2px 2px #f5f5f5;
 }
 
 .breadcrumb {
     padding-left: 20px;
-    background-color: #fdfdfd;
-    box-shadow: 2px 2px 2px #f5f5f5;
+    padding-right: 20px;
 }
 
 .form-inline {

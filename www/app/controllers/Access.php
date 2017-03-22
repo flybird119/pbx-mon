@@ -11,6 +11,14 @@ class AccessController extends Yaf\Controller_Abstract {
     public function statusAction() {
         return true;
 	}
+
+    public function createAction() {
+        return true;
+    }
+
+    public function editAction() {
+        return true;
+    }
 }
 
 

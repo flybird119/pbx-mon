@@ -7,8 +7,6 @@ body {
 .breadcrumb {
     padding-left: 20px;
     padding-right: 22px;
-    background-color: #fdfdfd;
-    box-shadow: 2px 2px 2px #f5f5f5;
 }
 
 .breadcrumb .add {
@@ -23,11 +21,7 @@ body {
     margin-top: 10px;
 }
 
-table th {
-    text-align: center;
-}
-
-table tr td {
+table th, table tr td {
     text-align: center;
 }
 
@@ -38,14 +32,13 @@ table tr td {
 
 .main {
     margin-top: -5px;
-    border-color: #f8f8f8;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    background-color: #fefefe;
-    box-shadow: 2px 2px 2px #f5f5f5;
 }
 
 .table {
     margin-top: 10px;
+}
+
+form button {
+    width: 80px;
+    margin-right: 20px;
 }
