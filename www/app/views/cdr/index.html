@@ -47,7 +47,7 @@
     </div>
     <div class="container main">
       <div class="row query">
-        <form class="form-inline" action="/cdr" method="post">
+        <form class="form-inline" action="/cdr" method="get">
           <div class="form-group">
             <label>通话时间: </label>
 	        <?php
@@ -64,7 +64,7 @@
 	          if (isset($where['end'])) {
 	            echo '<input type="text" id="end" class="form-control input-sm end" name="end" value="',$where['end'],'" />';
 	          } else {
-	      	    echo '<input type="text" id="end" class="form-control input-sm end" name="end" value="',date('Y-m-d 08:00:00'),'" />';
+	      	    echo '<input type="text" id="end" class="form-control input-sm end" name="end" value="',date('Y-m-d 20:00:00'),'" />';
 	          }
 	        ?>
           </div>
@@ -98,7 +98,7 @@
 	          }
 	        ?>
           </div>
-          <button type="submit" id="query" class="btn btn-success btn-sm">查 询</button>
+          <button type="submit" id="query" class="btn btn-success btn-sm" name="sub" value="ok">查 询</button>
         </form>
       </div>
       <div class="row">
@@ -127,38 +127,38 @@
   <script type="text/javascript">
     // datetimepicker
     $('#start').datetimepicker({
-    format: 'yyyy-mm-dd hh:ii:ss',
-    language: 'zh-CN',
-    autoclose: true
+      format: 'yyyy-mm-dd hh:ii:ss',
+      language: 'zh-CN',
+      autoclose: true
     });
 
     $('#end').datetimepicker({
-    format: 'yyyy-mm-dd hh:ii:ss',
-    language: 'zh-CN',
-    autoclose: true
+      format: 'yyyy-mm-dd hh:ii:ss',
+      language: 'zh-CN',
+      autoclose: true
     });
 
     $("#query").click(function(){
-    var index = layer.load(2, {shade: [0.7,'#fff'], time: 3000});
+      var index = layer.load(2, {shade: [0.7,'#fff'], time: 3000});
     });
 
     function show(file) {
-    var html = '<div class="container-fluid">' +
-      '<div class="row text-center" style="height:75px;padding:20px">' +
-        '<audio src="/record/' + file + '" style="width:333px" preload="metadata" autoplay="autoplay" controls="controls">您的浏览器不支持录音试听</audio>' +
-        '</div>' +
-      '</div>';
+      var html = '<div class="container-fluid">' +
+                 '<div class="row text-center" style="height:75px;padding:20px">' +
+                 '<audio src="/record/' + file + '" style="width:333px" preload="metadata" autoplay="autoplay" controls="controls">您的浏览器不支持录音试听</audio>' +
+                 '</div>' +
+                 '</div>';
 
-    layer.open({
-    type: 1,
-    title: '录音试听',
-    skin: 'layui-layer-demo',
-    closeBtn: 1,
-    shift: 0,
-    shade: 0,
-    area: ['420px', '120px'],
-    content: html
-    });
+      layer.open({
+        type: 1,
+        title: '录音试听',
+        skin: 'layui-layer-demo',
+        closeBtn: 1,
+        shift: 0,
+        shade: 0,
+        area: ['420px', '120px'],
+        content: html
+      });
     }
   </script>
 </html>
