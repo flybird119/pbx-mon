@@ -29,7 +29,7 @@ class UserController extends Yaf\Controller_Abstract {
             }
         }
 
-	    $this->getView()->assign("message", $message);
+        $this->getView()->assign("message", $message);
         return true;
 	}
 }
