@@ -10,7 +10,6 @@
 
     <extension name="Local">
       <condition field="destination_number" expression="(.*)">
-	    <action application="answer"/>
 	    <action application="set" data="call_timeout=60"/>
 	    <action application="set" data="ringback=${cn-ring}"/>
 	    <action application="set" data="RECORD_STEREO=false"/>
