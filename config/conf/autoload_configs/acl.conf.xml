@@ -1,14 +1,7 @@
 <configuration name="acl.conf" description="Network Lists">
   <network-lists>
-
-    <list name="public" default="deny">
-      <node type="allow" cidr="127.0.0.1/32"/>
-    </list>
-
-    <list name="local" default="deny">
-      <node type="allow" cidr="118.178.93.50/32"/>
-    </list>
-
+    <X-PRE-PROCESS cmd="include" data="../acl/external.xml"/>
+    <X-PRE-PROCESS cmd="include" data="../acl/internal.xml"/>
   </network-lists>
 </configuration>
 

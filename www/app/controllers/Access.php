@@ -21,6 +21,17 @@ class AccessController extends Yaf\Controller_Abstract {
     public function editAction() {
         return true;
     }
+
+    public function deleteAction() {
+        $id = intval($this->getRequest()->getQuery('id'));
+        $access = new AccessModel();
+
+        if ($access->isExist($id)) {
+            $access->delete($id);
+        }
+
+        return false;
+    }
 }
 
 
