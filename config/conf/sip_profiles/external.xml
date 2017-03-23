@@ -2,7 +2,6 @@
   <!-- http://wiki.freeswitch.org/wiki/Sofia_Configuration_Files -->
   <!-- This profile is only for outbound registrations to providers -->
   <gateways>
-    <X-PRE-PROCESS cmd="include" data="external/*.xml"/>
   </gateways>
 
   <aliases>
@@ -38,7 +37,7 @@
     <!-- This could be set to "passive" -->
     <param name="local-network-acl" value="localnet.auto"/>
     <param name="manage-presence" value="false"/>
-    <param name="apply-inbound-acl" value="public"/>
+    <param name="apply-inbound-acl" value="external"/>
 
     <!-- used to share presence info across sofia profiles
          manage-presence needs to be set to passive on this profile
