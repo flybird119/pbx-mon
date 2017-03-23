@@ -103,7 +103,7 @@ class AccessModel {
                 if (is_writable($file)) {
                     $xml = '<list name="internal" default="deny">' . "\n";
                     foreach ($result as $obj) {
-                        $xml .= '  <node type="allow" cidr="' . $obj['ip'] '/32"/>' . "\n";
+                        $xml .= '  <node type="allow" cidr="' . $obj['ip'] . '/32"/>' . "\n";
                     }
                     $xml .= '</list>' . "\n";
 
