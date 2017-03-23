@@ -15,6 +15,16 @@ class AccessController extends Yaf\Controller_Abstract {
 	}
 
     public function createAction() {
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            $access = new AccessModel();
+            $access->create($request->getPost());
+            $url = 'http://' . $_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_PORT'] . '/access/status';
+            $this->getResponse()->setRedirect($url)->response();
+            return false;
+        }
+        
         return true;
     }
 
