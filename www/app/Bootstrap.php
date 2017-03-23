@@ -26,7 +26,9 @@ class Bootstrap extends Yaf\Bootstrap_Abstract{
         $name = $this->config->db->name;
 
         try {
-            Yaf\Registry::set('db', new PDO('mysql:host=' . $host . ';port=' . $port . ';dbname=' . $name, $user, $pass));
+            $db = new PDO('mysql:host=' . $host . ';port=' . $port . ';dbname=' . $name, $user, $pass);
+            $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            Yaf\Registry::set('db', $db);
         } catch (PDOException $e) {
             error_log($e->getMessage(), 0);
         }
