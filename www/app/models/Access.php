@@ -66,10 +66,10 @@ class AccessModel {
 
                 if ($name && $ip && $port && $description) {
                     $sth = $this->db->prepare('INSERT INTO internal(name, ip, port, description) VALUES(:name, :ip, :port, :description)');
-                    $sth->bindParam(':name', $name, PDO::PARAM:STR);
+                    $sth->bindParam(':name', $name, PDO::PARAM_STR);
                     $sth->bindParam(':ip', $ip, PDO::PARAM_STR);
-                    $sth->bindParam(':port', $ip, PDO::PARAM_INT);
-                    $sth->bindParam(':description', $ip, PDO::PARAM_STR);
+                    $sth->bindParam(':port', $port, PDO::PARAM_INT);
+                    $sth->bindParam(':description', $description, PDO::PARAM_STR);
 
                     if($sth->execute()) {
                         if($this->regenXml()){
@@ -116,7 +116,7 @@ class AccessModel {
                         return true;
                     }
                 } else {
-                    error_log('Cannot write file ' . $file . 'permission denied');
+                    error_log('Cannot write file ' . $file . ' permission denied');
                 }
             }
         }
