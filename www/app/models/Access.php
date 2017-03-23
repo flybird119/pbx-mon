@@ -7,6 +7,7 @@
  */
 
 use Tool\Filter;
+use Esl\ESLconnection;
 
 class AccessModel {
     public $db   = null;
@@ -73,6 +74,7 @@ class AccessModel {
 
                     if($sth->execute()) {
                         if($this->regenXml()){
+                            sleep(1);
                             $this->reloadAcl();
                             return true;
                         }
@@ -126,7 +128,6 @@ class AccessModel {
 
     public function reloadAcl() {
         $config = Yaf\Registry::get('config');
-        Yaf\loader::import("library/Esl/ESLconnection.php");
 
         // conection to freeswitch
         $esl = new ESLconnection($config->esl->host, $config->esl->port, $config->esl->password);

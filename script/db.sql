@@ -3,11 +3,11 @@
 -- author: typefo
 -- e-mail: typefo@qq.com
 
-DROP DATABASE IF EXISTS `bitcc`;
+DROP DATABASE IF EXISTS `pbxmon`;
 
-CREATE DATABASE `bitcc`;
+CREATE DATABASE `pbxmon`;
 
-USE bitcc;
+USE pbxmon;
 
 CREATE TABLE `cdr` (
        `id` bigint primary key auto_increment not null,
