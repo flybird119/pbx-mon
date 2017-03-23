@@ -54,7 +54,7 @@
               <tbody>
                 <?php
                   foreach ($data as $obj) {
-                    echo '<tr><td>',$obj['id'],'</td><td>',$obj['name'],'</td><td>',$obj['ip'],'</td><td>'$obj['port']'</td><td>正 常</td><td>',$obj['description'],'</td><td><a class="btn btn-default btn-xs" href="/access/edit?id=',$obj['id'],'"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>';
+                    echo '<tr><td>',$obj['id'],'</td><td>',$obj['name'],'</td><td>',$obj['ip'],'</td><td>',$obj['port'],'</td><td>正 常</td><td>',$obj['description'],'</td><td><a class="btn btn-default btn-xs" href="/access/edit?id=',$obj['id'],'"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>';
                   }
                 ?>
               </tbody>
