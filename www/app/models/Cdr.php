@@ -83,7 +83,7 @@ class CdrModel {
             }
 
             $sth->execute();
-            return $sth->fetchAll(PDO::FETCH_ASSOC);
+            return $sth->fetchAll();
         }
         
 	

@@ -30,7 +30,7 @@ class UserModel {
                     $sth = $this->db->prepare('SELECT password FROM account WHERE username = :username LIMIT 1');
                     $sth->bindParam(':username', $this->username, PDO::PARAM_STR);
                     $sth->execute();
-                    $result = $sth->fetch(PDO::FETCH_ASSOC);
+                    $result = $sth->fetch();
                     if (is_array($result) && count($result) > 0) {
                         if ($result['password'] === $oldpassword) {
                             $sth = $this->db->prepare('UPDATE account SET password = :password WHERE username = :username');
@@ -51,7 +51,7 @@ class UserModel {
             $sth = $this->db->prepare('SELECT username FROM account WHERE username = :username LIMIT 1');
             $sth->bindParam(':username', $this->username, PDO::PARAM_STR);
             $sth->execute();
-            $result = $sth->fetch(PDO::FETCH_ASSOC);
+            $result = $sth->fetch();
 
             if (is_array($result) && count($result) > 0) {
                 return true;

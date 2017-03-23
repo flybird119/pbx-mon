@@ -31,7 +31,7 @@ class LoginModel {
             $sth->bindParam(':username', $this->username, PDO::PARAM_STR);
             $sth->bindParam(':password', $this->password, PDO::PARAM_STR);
             $sth->execute();
-            $result = $sth->fetch(PDO::FETCH_ASSOC);
+            $result = $sth->fetch();
 
             if (is_array($result) && count($result) > 0) {
                 return true;

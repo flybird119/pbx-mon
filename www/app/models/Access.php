@@ -17,9 +17,9 @@ class AccessModel {
     }
 
     public function get($id = null) {
+        $id = intval($id);
         $result = array();
-
-        if ($this->db && is_numeric($id) && $id > 0) {
+        if ($id > 0 && $this->db) {
             $sth = $this->db->prepare('SELECT * FROM internal WHERE id = :id LIMIT 1');
             $sth->bindParam(':id', $id, PDO::PARAM_INT);
             $sth->execute();
