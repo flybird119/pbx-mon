@@ -9,6 +9,8 @@
 class AccessController extends Yaf\Controller_Abstract {
 
     public function statusAction() {
+        $access = new AccessModel();
+        $this->getView()->assign("data", $access->getAll());
         return true;
 	}
 

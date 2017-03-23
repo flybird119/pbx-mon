@@ -52,11 +52,11 @@
                 <tr><th>编 号</th><th>对接名称</th><th>IP 地址</th><th>端 口</th><th>状 态</th><th>备 注</th><th>编 辑</th></tr>
               </thead>
               <tbody>
-                <tr><td>1</td><td>苏州VOS-01</td><td>112.2.10.88</td><td>5060</td><td>正 常</td><td>上海移动320线</td><td><a class="btn btn-default btn-xs" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>
-                <tr><td>2</td><td>苏州VOS-02</td><td>112.2.10.88</td><td>5060</td><td>正 常</td><td>上海移动240线</td><td><a class="btn btn-default btn-xs" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>
-                <tr><td>3</td><td>苏州VOS-03</td><td>112.2.10.88</td><td>5060</td><td>正 常</td><td>山西移动500线</td><td><a class="btn btn-default btn-xs" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>
-                <tr><td>4</td><td>苏州VOS-04</td><td>112.2.10.88</td><td>5060</td><td>正 常</td><td>湖南移动120线</td><td><a class="btn btn-default btn-xs" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>
-                <tr><td>5</td><td>苏州VOS-05</td><td>112.2.10.88</td><td>5060</td><td>正 常</td><td>苏州移动500线</td><td><a class="btn btn-default btn-xs" href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>
+                <?php
+                  foreach ($data as $obj) {
+                    echo '<tr><td>',$obj['id'],'</td><td>',$obj['name'],'</td><td>',$obj['ip'],'</td><td>'$obj['port']'</td><td>正 常</td><td>',$obj['description'],'</td><td><a class="btn btn-default btn-xs" href="/access/edit?id=',$obj['id'],'"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>';
+                  }
+                ?>
               </tbody>
             </table>
           </div>
