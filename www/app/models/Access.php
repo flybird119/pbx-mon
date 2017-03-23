@@ -44,8 +44,8 @@ class AccessModel {
 
 
     public function delete($id = null) {
-        if ($this->db && $this->isExist($id)){
-            $id = intval($id);
+        $id = intval($id);
+        if ($id > 0 && $this->db && $this->isExist($id)){
             $success = $this->db->query('DELETE FROM internal WHERE id = ' . $id . '');
             if ($success) {
                 // regenerate the configuration files
