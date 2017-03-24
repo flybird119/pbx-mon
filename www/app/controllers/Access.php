@@ -31,6 +31,19 @@ class AccessController extends Yaf\Controller_Abstract {
     }
 
     public function editAction() {
+        $request = $this->getRequest();
+        $access = new AccessModel();
+
+        if ($request->isPost()) {
+            $access->change($request->getQuery('id'), $request->getPost());
+            $url = 'http://' . $_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_PORT'] . '/access/status';
+            $response = $this->getResponse();
+            $response->setRedirect($url);
+            $response->response();
+            return false;
+        }
+        
+        $this->getView()->assign('data', $access->get($id));
         return true;
     }
 

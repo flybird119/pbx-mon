@@ -11,6 +11,7 @@ use Esl\ESLconnection;
 
 class AccessModel {
     public $db   = null;
+    private $table = 'internal';
     
     public function __construct() {
         $this->db = Yaf\Registry::get('db');
@@ -18,35 +19,65 @@ class AccessModel {
 
     public function get($id = null) {
         $id = intval($id);
-        $result = array();
         if ($id > 0 && $this->db) {
-            $sth = $this->db->prepare('SELECT * FROM internal WHERE id = :id LIMIT 1');
+            $sql = 'SELECT * FROM ' . $this->table . ' WHERE id = :id LIMIT 1');
+            $sth = $this->db->prepare($sql);
             $sth->bindParam(':id', $id, PDO::PARAM_INT);
             $sth->execute();
-            $result = $sth->fetch();
+            return $sth->fetch();
         }
 
-        return $result;
+        return null;
     }
 
     public function getAll() {
         $result = array();
         if ($this->db) {
-            $result = $this->db->query('SELECT * FROM internal ORDER BY id');
+            $sql = 'SELECT * FROM ' . $this->table . ' ORDER BY id';
+            $result = $this->db->query($sql);
         }
 
         return $result;
     }
     
     public function change($id = null, array $data = null) {
+        $id = intval($id);
+        if ($id > 0 && $this->db && $this->isExist($id)) {
+            if (isset($data['name'], $data['ip'], $data['port'], $data['description'])) {
+                $name = Filter::alpha($data['name'], 'unknown');
+                $ip = Filter::ip($data['ip']);
+                $port = Filter::port($data['port'], 5060);
+                $description = Filter::string($data['description'], 'No description');
 
+                if ($name && $ip && $port && $description) {
+                    $sql = 'UPDATE ' . $this->table . ' SET name = :name, ip = :ip, port = :port, description = :description WHERE id = :id';
+                    $sth = $this->db->prepare($sql);
+                    $sth->bindParam(':id', $id, PDO::PARAM_INT);
+                    $sth->bindParam(':name', $name, PDO::PARAM_STR);
+                    $sth->bindParam(':port', $port, PDO::PARAM_INT);
+                    $sth->bindParam(':description', $description, PDO::PARAM_STR);
+
+                    if ($sth->execute()) {
+                        if($this->regenXml()){
+                            sleep(1);
+                            $this->reloadAcl();
+                            return true;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        return false;
     }
 
 
     public function delete($id = null) {
         $id = intval($id);
         if ($id > 0 && $this->db && $this->isExist($id)){
-            $success = $this->db->query('DELETE FROM internal WHERE id = ' . $id . '');
+            $sql = 'DELETE FROM ' . $this->table . ' WHERE id = ' . $id . '';
+            $success = $this->db->query($sql);
             if ($success) {
                 // regenerate the configuration files
                 if($this->regenXml()) {
@@ -66,7 +97,8 @@ class AccessModel {
                 $description = Filter::string($data['description'], 'No description');
 
                 if ($name && $ip && $port && $description) {
-                    $sth = $this->db->prepare('INSERT INTO internal(name, ip, port, description) VALUES(:name, :ip, :port, :description)');
+                    $sql = 'INSERT INTO ' . $this->table . '(name, ip, port, description) VALUES(:name, :ip, :port, :description)';
+                    $sth = $this->db->prepare($sql);
                     $sth->bindParam(':name', $name, PDO::PARAM_STR);
                     $sth->bindParam(':ip', $ip, PDO::PARAM_STR);
                     $sth->bindParam(':port', $port, PDO::PARAM_INT);
@@ -89,7 +121,8 @@ class AccessModel {
     public function isExist($id = null) {
         $id = intval($id);
         if ($id > 0 && $this->db) {
-            $result = $this->db->query('SELECT id FROM internal WHERE id = ' . $id . ' LIMIT 1');
+            $sql = 'SELECT id FROM ' . $this->table . ' WHERE id = ' . $id . ' LIMIT 1';
+            $result = $this->db->query($sql);
             if (count($result) > 0) {
                 return true;
             }
