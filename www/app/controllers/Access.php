@@ -43,7 +43,7 @@ class AccessController extends Yaf\Controller_Abstract {
             return false;
         }
         
-        $this->getView()->assign('data', $access->get($id));
+        $this->getView()->assign('data', $access->get($request->getQuery('id')));
         return true;
     }
 

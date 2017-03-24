@@ -31,6 +31,19 @@ class GatewayController extends Yaf\Controller_Abstract {
     }
 
     public function editAction() {
+        $request = $this->getRequest();
+        $gateway = new GatewayModel();
+
+        if ($request->isPost()) {
+            $gateway->change($request->getQuery('id'), $request->getPost());
+            $url = 'http://' . $_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_PORT'] . '/gateway/status';
+            $response = $this->getResponse();
+            $response->setRedirect($url);
+            $response->response();
+            return false;
+        }
+        
+        $this->getView()->assign('data', $gateway->get($request->getQuery('id')));
         return true;
     }
 

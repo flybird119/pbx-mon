@@ -20,7 +20,7 @@ class AccessModel {
     public function get($id = null) {
         $id = intval($id);
         if ($id > 0 && $this->db) {
-            $sql = 'SELECT * FROM ' . $this->table . ' WHERE id = :id LIMIT 1');
+            $sql = 'SELECT * FROM ' . $this->table . ' WHERE id = :id LIMIT 1';
             $sth = $this->db->prepare($sql);
             $sth->bindParam(':id', $id, PDO::PARAM_INT);
             $sth->execute();
@@ -54,11 +54,12 @@ class AccessModel {
                     $sth = $this->db->prepare($sql);
                     $sth->bindParam(':id', $id, PDO::PARAM_INT);
                     $sth->bindParam(':name', $name, PDO::PARAM_STR);
+                    $sth->bindParam(':ip', $ip, PDO::PARAM_STR);
                     $sth->bindParam(':port', $port, PDO::PARAM_INT);
                     $sth->bindParam(':description', $description, PDO::PARAM_STR);
 
                     if ($sth->execute()) {
-                        if($this->regenXml()){
+                        if($this->regenAcl()){
                             sleep(1);
                             $this->reloadAcl();
                             return true;
@@ -131,7 +132,7 @@ class AccessModel {
         return false;
     }
 
-    public function regenXml() {
+    public function regenAcl() {
         if ($this->db) {
             $result = $this->getAll();
             if (count($result) > 0) {

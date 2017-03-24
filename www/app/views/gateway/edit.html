@@ -45,29 +45,20 @@
       </div>
       <div class="row">
         <div class="container main">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label class="col-sm-offset-2 col-xs-2 col-sm-2 control-label">编 号:</label>
-              <div class="col-xs-3 col-sm-3">
-                <p class="form-control-static" placeholder="Enter prefix" disable="disable"> 12 </p>
-              </div>
-              <div class="col-xs-2 col-sm-2">
-                <span class="help-block">落地编号，不可修改</span>
-              </div>
-            </div>
+          <form class="form-horizontal" action="/gateway/edit?id<?php if($data) echo $data['id'];?>" method="post">
             <div class="form-group">
               <label class="col-sm-offset-2 col-xs-2 col-sm-2 control-label">落地前缀:</label>
               <div class="col-xs-3 col-sm-3">
-                <input type="text" class="input-sm form-control" placeholder="Enter prefix" value="86" required="required" />
+                <input type="text" class="input-sm form-control" placeholder="Enter prefix" name="prefix" value="<?php if($data) echo $data['prefix']?>" required="required" />
               </div>
               <div class="col-xs-2 col-sm-2">
                 <span class="help-block">落地网关被叫号码前缀</span>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-offset-2 col-xs-2 col-sm-2 control-label">IP地址:</label>
+              <label class="col-sm-offset-2 col-xs-2 col-sm-2 control-label">IP 地址:</label>
               <div class="col-xs-3 col-sm-3">
-                <input type="text" class="input-sm form-control" placeholder="Enter ip address" value="112.2.21.88" required="required" />
+                <input type="text" class="input-sm form-control" placeholder="Enter ip address" name="ip" value="<?php if($data) echo $data['ip'];?>" required="required" />
               </div>
               <div class="col-xs-3 col-sm-3">
                 <span class="help-block">落地网关服务器 IP 地址</span>
@@ -76,7 +67,7 @@
             <div class="form-group">
               <label class="col-sm-offset-2 col-xs-2 col-sm-2 control-label">端 口:</label>
               <div class="col-xs-3 col-sm-3">
-                <input type="number" class="input-sm form-control" placeholder="Enter port" min="1" max="65535" value="5060" required="required" />
+                <input type="number" class="input-sm form-control" placeholder="Enter port" min="1" max="65535" name="port" value="<?php if($data) echo $data['port'];?>" required="required" />
               </div>
               <div class="col-xs-3 col-sm-3">
                 <span class="help-block">落地网关服务器端口</span>
@@ -85,7 +76,7 @@
             <div class="form-group">
               <label class="col-sm-offset-2 col-xs-2 col-sm-2 control-label">备注信息:</label>
               <div class="col-xs-3 col-sm-3">
-                <input type="text" class="input-sm form-control" placeholder="Enter description" value="上海移动300线" />
+                <input type="text" class="input-sm form-control" placeholder="Enter description" name="description" value="<?php if($data) echo $data['description'];?>" />
               </div>
               <div class="col-xs-3 col-sm-3">
                 <span class="help-block">落地网关备注说明</span>

@@ -20,13 +20,12 @@ class GatewayModel {
 
     public function get($id = null) {
         $id = intval($id);
-        $result = array();
         if ($id > 0 && $this->db) {
             $sql = 'SELECT * FROM ' . $this->table . ' WHERE id = ' . $id . ' LIMIT 1';
-            $result = $this->db->query($sql);
+            return $this->db->query($sql);
         }
 
-        return $result;
+        return null;
     }
 
     public function getAll() {
@@ -40,7 +39,37 @@ class GatewayModel {
     }
     
     public function change($id = null, array $data = null) {
+        $id = intval($id);
+        if ($id > 0 && $this->db && $this->isExist($id)) {
+            if (isset($data['prefix'], $data['ip'], $data['port'], $data['description'])) {
+                $prefix = Filter::alpha($data['prefix']);
+                $ip = Filter::ip($data['ip']);
+                $port = Filter::port($data['port'], 5060);
+                $description = Filter::string($data['description'], 'No description');
 
+                if ($prefix && $ip && $port && $description) {
+                    $sql = 'UPDATE ' . $this->table . ' SET prefix = :prefix, ip = :ip, port = :port, description = :description WHERE id = :id';
+                    $sth = $this->db->prepare($sql);
+                    $sth->bindParam(':id', $id, PDO::PARAM_INT);
+                    $sth->bindParam(':prefix', $prefix, PDO::PARAM_STR);
+                    $sth->bindParam(':ip', $ip, PDO::PARAM_STR);
+                    $sth->bindParam(':port', $port, PDO::PARAM_INT);
+                    $sth->bindParam(':description', $description, PDO::PARAM_STR);
+
+                    if ($sth->execute()) {
+                        if($this->regenAcl() && $this->regenPlan()){
+                            sleep(1);
+                            $this->reloadAcl();
+                            sleep(1);
+                            $this->reloadXml();
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
 
@@ -51,7 +80,7 @@ class GatewayModel {
             $success = $this->db->query($sql);
             if ($success) {
                 // regenerate the configuration files
-                if($this->regenXml()) {
+                if($this->regenAcl()) {
                     // reload acl list
                     $this->reloadAcl();
                 }
@@ -76,7 +105,7 @@ class GatewayModel {
                     $sth->bindParam(':description', $description, PDO::PARAM_STR);
 
                     if($sth->execute()) {
-                        if($this->regenXml() && $this->regenPlan()){
+                        if($this->regenAcl() && $this->regenPlan()){
                             sleep(1);
                             $this->reloadAcl();
                             sleep(1);
@@ -104,7 +133,7 @@ class GatewayModel {
         return false;
     }
 
-    public function regenXml() {
+    public function regenAcl() {
         if ($this->db) {
             $result = $this->getAll();
             if (count($result) > 0) {
