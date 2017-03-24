@@ -69,4 +69,19 @@
   <script type="text/javascript" src="/js/jquery.min.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/layer.js"></script>
+  <script type="text/javascript">
+  function delete(id) {
+    layer.confirm('亲，确定要删除？', {
+      btn: ['是','否']
+    }, function(){
+      var url = '/gateway/delete/id=' + id;
+      $.get(url, function(){
+        layer.msg('删除成功!', {icon: 1, time: 1000});
+          setTimeout(function() {
+            window.location.reload();
+          }, 1000);
+        });
+    });
+  }
+  </script>
 </html>
