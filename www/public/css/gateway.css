@@ -38,7 +38,7 @@ table th, table tr td {
     margin-top: 10px;
 }
 
-form button {
+form .form-group button, form .form-group a {
     width: 80px;
     margin-right: 20px;
 }

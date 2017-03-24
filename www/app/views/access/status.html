@@ -54,7 +54,7 @@
               <tbody>
                 <?php
                   foreach ($data as $obj) {
-                    echo '<tr><td>',$obj['id'],'</td><td>',$obj['name'],'</td><td>',$obj['ip'],'</td><td>',$obj['port'],'</td><td>正 常</td><td>',$obj['description'],'</td><td><a class="btn btn-danger btn-xs" href="javascript:;" onClick="delete(',$obj['id'],')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删 除</a></td><td><a class="btn btn-default btn-xs" href="/access/edit?id=',$obj['id'],'"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>';
+                    echo '<tr><td>',$obj['id'],'</td><td>',$obj['name'],'</td><td>',$obj['ip'],'</td><td>',$obj['port'],'</td><td>正 常</td><td>',$obj['description'],'</td><td><a class="btn btn-danger btn-xs" href="javascript:;" onClick="remove(',$obj['id'],')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删 除</a></td><td><a class="btn btn-default btn-xs" href="/access/edit?id=',$obj['id'],'"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>';
                   }
                 ?>
               </tbody>
@@ -68,11 +68,11 @@
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/layer.js"></script>
   <script type="text/javascript">
-  function delete(id) {
+  function remove(id) {
     layer.confirm('亲，确定要删除？', {
       btn: ['是','否']
     }, function(){
-      var url = '/access/delete/id=' + id;
+      var url = '/access/delete?id=' + id;
       $.get(url, function(){
         layer.msg('删除成功!', {icon: 1, time: 1000});
           setTimeout(function() {
