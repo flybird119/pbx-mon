@@ -8,8 +8,8 @@
       </condition>
     </extension>
 
-    <extension name="Local">
-      <condition field="destination_number" expression="(.*)">
+    <extension name="default">
+      <condition field="destination_number" expression="^86(02.*)">
 	    <action application="set" data="call_timeout=60"/>
 	    <action application="set" data="ringback=${cn-ring}"/>
 	    <action application="set" data="RECORD_STEREO=false"/>

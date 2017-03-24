@@ -20,7 +20,7 @@ class GatewayController extends Yaf\Controller_Abstract {
         if ($request->isPost()) {
             $gateway = new GatewayModel();
             $gateway->create($request->getPost());
-            $url = 'http://' . $_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_PORT'] . '/access/status';
+            $url = 'http://' . $_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_PORT'] . '/gateway/status';
             $response = $this->getResponse();
             $response->setRedirect($url);
             $response->response();
