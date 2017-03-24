@@ -48,13 +48,11 @@ class GatewayController extends Yaf\Controller_Abstract {
     }
 
     public function deleteAction() {
-        $id = intval($this->getRequest()->getQuery('id'));
+        $id = $this->getRequest()->getQuery('id');
         $gateway = new GatewayModel();
 
-        if ($gateway->isExist($id)) {
-            $gateway->delete($id);
-        }
-
+        $gateway->delete($id);
+        
         return false;
     }
 }

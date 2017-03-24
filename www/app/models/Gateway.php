@@ -83,12 +83,17 @@ class GatewayModel {
             $success = $this->db->query($sql);
             if ($success) {
                 // regenerate the configuration files
-                if($this->regenAcl()) {
-                    // reload acl list
+                if($this->regenAcl() && $this->regenPlan()){
+                    sleep(1);
                     $this->reloadAcl();
+                    sleep(1);
+                    $this->reloadXml();
+                    return true;
                 }
             }
         }
+
+        return false;
     }
     
     public function create(array $data = null) {

@@ -81,7 +81,7 @@ class AccessModel {
             $success = $this->db->query($sql);
             if ($success) {
                 // regenerate the configuration files
-                if($this->regenXml()) {
+                if($this->regenAcl()) {
                     // reload acl list
                     $this->reloadAcl();
                 }
