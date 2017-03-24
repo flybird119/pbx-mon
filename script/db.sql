@@ -38,3 +38,10 @@ CREATE TABLE `internal` (
 );
 
 
+CREATE TABLE `external` (
+       `id` int primary key auto_increment not null,
+       `prefix` varchar(64) not null,
+       `ip` varchar(16) not null,
+       `port` int not null,
+       `description` varchar(64) not null
+);
