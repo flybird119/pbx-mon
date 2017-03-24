@@ -55,7 +55,7 @@
                 <?php
                   if ($data) {
                     foreach($data as $obj) {
-                      echo '<tr><td>',$obj['id'],'</td><td>',$obj['prefix'],'</td><td>',$obj['ip'],'</td><td>',$obj['port'],'</td><td>正 常</td><td>',$obj['description'],'</td><td><a class="btn btn-danger btn-xs" href="javascript:;" onClick="delete(8)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删 除</a></td><td><a class="btn btn-default btn-xs" href="/gateway/edit?id="',$obj['id'],'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>';
+                      echo '<tr><td>',$obj['id'],'</td><td>',$obj['prefix'],'</td><td>',$obj['ip'],'</td><td>',$obj['port'],'</td><td>正 常</td><td>',$obj['description'],'</td><td><a class="btn btn-danger btn-xs" href="javascript:;" onClick="delete(8)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删 除</a></td><td><a class="btn btn-default btn-xs" href="/gateway/edit?id=',$obj['id'],'"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编 辑</a></td></tr>';
                     }
                   }
                 ?>

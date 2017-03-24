@@ -21,8 +21,11 @@ class GatewayModel {
     public function get($id = null) {
         $id = intval($id);
         if ($id > 0 && $this->db) {
-            $sql = 'SELECT * FROM ' . $this->table . ' WHERE id = ' . $id . ' LIMIT 1';
-            return $this->db->query($sql);
+            $sql = 'SELECT * FROM ' . $this->table . ' WHERE id = :id LIMIT 1';
+            $sth = $this->db->prepare($sql);
+            $sth->bindParam(':id', $id, PDO::PARAM_INT);
+            $sth->execute();
+            return $sth->fetch();
         }
 
         return null;
@@ -139,7 +142,7 @@ class GatewayModel {
             if (count($result) > 0) {
                 $file = '/usr/local/freeswitch/conf/acl/external.xml';
                 if (is_writable($file)) {
-                    $xml = '<list name="internal" default="deny">' . "\n";
+                    $xml = '<list name="external" default="deny">' . "\n";
                     foreach ($result as $obj) {
                         $xml .= '  <node type="allow" cidr="' . $obj['ip'] . '/32"/>' . "\n";
                     }
