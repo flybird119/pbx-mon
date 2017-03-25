@@ -151,9 +151,9 @@ class AccessModel {
                         fclose($fp);
                         return true;
                     }
-                } else {
-                    error_log('Cannot write file ' . $file . ' permission denied');
                 }
+
+                error_log('Cannot write file ' . $file . ' permission denied');
             }
         }
 
@@ -161,21 +161,31 @@ class AccessModel {
     }
 
     public function reloadAcl() {
-        $config = Yaf\Registry::get('config');
+        if ($this->eslCmd('bgapi reloadacl')) {
+            return true;
+        }
 
-        // conection to freeswitch
-        $esl = new ESLconnection($config->esl->host, $config->esl->port, $config->esl->password);
+        return false;
+    }
 
-        if ($esl) {
-            // exec reloadacl command
-            $esl->send('bgapi reloadacl');
-        } else {
+    public eslCmd($cmd = null) {
+        if ($cmd && is_string($cmd)) {
+            $config = Yaf\Registry::get('config');
+
+            // conection to freeswitch
+            $esl = new ESLconnection($config->esl->host, $config->esl->port, $config->esl->password);
+            
+            if ($esl) {
+                // exec reloadacl command
+                $esl->send($cmd);
+                // close esl connection
+                $esl->disconnect();
+                return true;
+            }
+            
             error_log('esl cannot connect to freeswitch', 0);
         }
-
-        // close esl connection
-        if ($esl) {
-            $esl->disconnect();
-        }
+        
+        return false;
     }
 }
