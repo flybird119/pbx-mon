@@ -14,6 +14,7 @@ CREATE TABLE `cdr` (
        `caller` varchar(32) not null,
        `called` varchar(32) not null,
        `duration` int not null,
+       `rpf` varchar(8) not null,
        `file` varchar(128) not null,
        `create_time` datetime not null
 );

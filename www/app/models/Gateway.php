@@ -187,11 +187,13 @@ class GatewayModel {
                     foreach ($result as $obj) {
                         $xml .= '    <extension name="' . $obj['prefix'] . '">' . "\n";
                         $xml .= '      <condition field="destination_number" expression="^' . $obj['prefix'] . '(.*)$">' . "\n";
+                        $xml .= '        <action application="set" data="rpf=' . $obj['prefix']. '"/>' . "\n";
+                        $xml .= '        <action application="set" data="called=$1"/>' . "\n";
                         $xml .= '        <action application="set" data="call_timeout=60"/>' . "\n";
                         $xml .= '        <action application="set" data="ringback=${cn-ring}"/>' . "\n";
                         $xml .= '        <action application="set" data="RECORD_STEREO=false"/>' . "\n";
                         $xml .= '        <action application="set" data="RECORD_ANSWER_REQ=true"/>' . "\n";
-                        $xml .= '        <action application="record_session" data="/var/record/${strftime(%Y/%m/%d}/${caller_id_number}-$1-${uuid}.wav"/>' . "\n";
+                        $xml .= '        <action application="record_session" data="/var/record/${strftime(%Y/%m/%d}/${caller_id_number}-${called}-${uuid}.wav"/>' . "\n";
                         $xml .= '        <action application="bridge" data="sofia/external/$1@' . $obj['ip'] . ':' . $obj['port'] . '"/>' . "\n";
                         $xml .= '        <action application="hangup"/>' . "\n";
                         $xml .= '        </condition>' . "\n";

@@ -104,13 +104,13 @@
       <div class="row">
         <table class="table table-hover table-condensed">
           <thead>
-            <tr><th>ID编号</th><th>主叫号码</th><th>被叫号码</th><th>通话时长</th><th>通话时间</th><th>录音试听</th><th>录音下载</th></tr>
+            <tr><th>ID</th><th>主叫号码</th><th>被叫号码</th><th>通话时长</th><th>通话时间</th><th>落地前缀</th><th>录音试听</th><th>录音下载</th></tr>
           </thead>
           <tbody>
 	        <?php
 	          if ($data) {
 	            foreach ($data as $obj) {
-                  echo '<tr><td>',$obj['id'],'</td><td>',$obj['caller'],'</td><td>',$obj['called'],'</td><td>',gmstrftime('%H:%M:%S', $obj['duration']),'</td><td>',$obj['create_time'],'</td><td><a href="javascript:;" onClick="show(',"'",$obj['file'],"'",')"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> 试 听</a></td><td><a href="/record/',$obj['file'],'">本地下载</a></td></tr>';
+                  echo '<tr><td>',$obj['id'],'</td><td>',$obj['caller'],'</td><td>',$obj['called'],'</td><td>',gmstrftime('%H:%M:%S', $obj['duration']),'</td><td>',$obj['rpf'],'</td><td>',$obj['create_time'],'</td><td><a href="javascript:;" onClick="show(',"'",$obj['file'],"'",')"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> 试 听</a></td><td><a href="/record/',$obj['file'],'">本地下载</a></td></tr>';
 	            }
 	          }
             ?>
