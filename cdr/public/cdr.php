@@ -23,7 +23,7 @@ try {
         $called = $rep['sip_to_user'];
         $called = mb_strlen($called) > 11 ? mb_substr($called, -11, mb_strlen($called)) : $called;
         $duration = intval($rep['billsec']);
-        $file = date('Y/m/d/', intval($rep['start_epoch'])) . $caller . '-' . $called . '-' . $uuid . '.wav';
+        $file = date('Y/m/d/', intval($rep['start_epoch'])) . $caller . '-' . $rep['sip_to_user'] . '-' . $uuid . '.wav';
         $create_time = urldecode($rep['start_stamp']);
 
         $db->query("INSERT INTO cdr(caller, called, duration, file, create_time) values('$caller', '$called', $duration, '$file', '$create_time')");
