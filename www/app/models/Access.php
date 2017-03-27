@@ -106,7 +106,7 @@ class AccessModel {
                     $sth->bindParam(':description', $description, PDO::PARAM_STR);
 
                     if($sth->execute()) {
-                        if($this->regenXml()){
+                        if($this->regenAcl()){
                             sleep(1);
                             $this->reloadAcl();
                             return true;

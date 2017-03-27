@@ -21,6 +21,7 @@ try {
         $uuid = $rep['uuid'];
         $caller = $rep['sip_from_user'];
         $called = $rep['sip_to_user'];
+        $called = mb_strlen($called) > 11 ? mb_substr($called, -11, mb_strlen($called)) : $called;
         $duration = intval($rep['billsec']);
         $file = date('Y/m/d/', intval($rep['start_epoch'])) . $caller . '-' . $called . '-' . $uuid . '.wav';
         $create_time = urldecode($rep['start_stamp']);

@@ -21,8 +21,8 @@ class CdrController extends Yaf\Controller_Abstract {
             $this->getView()->assign("data", $cdr->query($where));
             $this->getView()->assign("where", $this->check($where));
         } else {
-            $this->getView()->assign("data", $cdr->ToDay());
-            $this->getView()->assign("where", $this->check($where));
+            $this->getView()->assign("data", null);
+            $this->getView()->assign("where", null);
         }
 
         return true;
