@@ -27,7 +27,9 @@ try {
         $file = date('Y/m/d/', intval($rep['start_epoch'])) . $caller . '-' . $called . '-' . $uuid . '.wav';
         $create_time = urldecode($rep['start_stamp']);
 
-        $db->query("INSERT INTO cdr(caller, called, duration, src_ip, rpf, file, create_time) values('$caller', '$called', $duration, '$src_ip', '$rpf', '$file', '$create_time')");
+        if ($duration > 0) {
+            $db->query("INSERT INTO cdr(caller, called, duration, src_ip, rpf, file, create_time) values('$caller', '$called', $duration, '$src_ip', '$rpf', '$file', '$create_time')");
+        }
     } else {
         error_log('php parse cdr application/json data failure', 0);
     }

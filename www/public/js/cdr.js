@@ -3,7 +3,7 @@ function loadMore() {
     var append = false;
     var start = $('#start').val();
     var end = $('#end').val();
-    var duration = $('select[name="duration"]').val();
+    var duration = $('#duration').val();
     var caller = $('#caller').val();
     var called = $('#called').val();
 
