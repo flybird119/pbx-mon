@@ -7,7 +7,7 @@
 
 ### Web 截图
 
-![screenshot](./script/screenshot.jpg)
+![screenshot](./script/screenshot.png)
 
 ### 相关目录说明:
 ```
