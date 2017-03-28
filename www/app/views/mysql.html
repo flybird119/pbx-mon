@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>MySQL常见问题</title>
+<!-- 2017-03-15 周三 14:53 -->
+
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="typefo">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link href="bootstrap.min.css" rel="stylesheet">
+<style type="text/css">body{padding:15px;margin:0 auto;width:1024px;font-size:15px;line-height:24px}</style>
+<style type="text/css">h1{font-size:28px} h2{font-size:24px} h3{font-size:18px} h4{font-size:16px}</style>
+<style type="text/css">p{text-indent:10px}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">MySQL常见问题</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 忘记 root 账户密码</a></li>
+<li><a href="#sec-2">2. MySQL主从不同步问题</a></li>
+<li><a href="#sec-3">3. MySQL从库同步慢问题</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 忘记 root 账户密码</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+停止 mysql 服务器<br >
+</p>
+
+<pre class="example">
+$ killall -TERM mysqld
+</pre>
+
+<p>
+跳过 mysql 授权表启动数据库<br >
+</p>
+
+<pre class="example">
+$ mysqld_safe --user=root --skip-grant-tables &amp;
+</pre>
+
+<p>
+重新用 root 登录数据库<br >
+</p>
+
+<pre class="example">
+$ mysql -u root
+</pre>
+
+<p>
+重新修改 root 密码<br >
+</p>
+
+<pre class="example">
+mysql&gt; use mysql
+mysql&gt; update user set password=password("new_pass") where user="root";
+mysql&gt; flush privileges;
+</pre>
+
+<p>
+MySQL5.7 版本修改 root 密码方法<br >
+</p>
+
+<pre class="example">
+mysql&gt; update mysql.user set authentication_string=password('new_pass') where user='root' ;
+mysql&gt; flush privileges;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> MySQL主从不同步问题</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+在 Master 服务器上查看当前连接会话信息，查看进程 Sleep 是否太多<br >
+</p>
+
+<pre class="example">
+mysql&gt; show processlist;
+</pre>
+
+<p>
+查看 master 状态<br >
+</p>
+
+<pre class="example">
+mysql&gt; show master status;
++-------------------+----------+--------------+-------------------------------+
+| File              | Position | Binlog_Do_DB | Binlog_Ignore_DB              |
++-------------------+----------+--------------+-------------------------------+
+| mysqld-bin.000001 |     3260 |              | mysql,test,information_schema |
++-------------------+----------+--------------+-------------------------------+
+</pre>
+
+<p>
+在 Slave 服务器上查看 slave 状态<br >
+</p>
+
+<pre class="example">
+mysql&gt; show slave status\G
+</pre>
+
+<p>
+输出结果中 Slave_IO_Running: Yes 属正常，Slave_SQL_Running: No 表示不同步<br >
+</p>
+
+
+<p>
+<b>忽略错误后，继续同步</b><br >
+</p>
+
+<p>
+该方法适用于主从库数据相差不大，或者要求数据可以不完全统一的情况，数据要求不严格的情况<br >
+</p>
+
+<p>
+1.在 slave 从服务器上停止 slave 同步<br >
+</p>
+
+<pre class="example">
+mysql&gt; stop slave;
+</pre>
+
+<p>
+2.然后设置全局变量 sql_slave_skip_counter = 1 表示跳过一步错误，后面的数字可变<br >
+</p>
+
+<pre class="example">
+mysql&gt; set global sql_slave_skip_counter = 1;
+</pre>
+
+<p>
+3.然后启动 slave 同步<br >
+</p>
+
+<pre class="example">
+mysql&gt; start slave;
+</pre>
+
+
+<p>
+4.再查看当前同步状态<br >
+</p>
+
+<pre class="example">
+mysql&gt; show slave status\G
+</pre>
+
+
+<p>
+<b>重新做主从，完全同步</b><br >
+</p>
+
+<p>
+该方法适用于主从库数据相差较大，或者要求数据完全统一的情况<br >
+</p>
+
+
+<p>
+1.在 master 上进行锁表，让其变成只读模式，防止数据写入<br >
+</p>
+
+<pre class="example">
+mysql&gt; flush tables with read lock;
+</pre>
+
+<p>
+2.将 master 上的所有数据库进行导出<br >
+</p>
+
+<pre class="example">
+$ mysqldump -u root -p &gt; master-backuup.sql
+</pre>
+
+<p>
+这里注意一点：数据库备份一定要定期进行，确保数据万无一失<br >
+</p>
+
+<p>
+3.查看 master 状态<br >
+</p>
+
+<pre class="example">
+mysql&gt; show master status;
++-------------------+----------+--------------+-------------------------------+
+| File              | Position | Binlog_Do_DB | Binlog_Ignore_DB              |
++-------------------+----------+--------------+-------------------------------+
+| mysqld-bin.000001 |     3260 |              | mysql,test,information_schema |
++-------------------+----------+--------------+-------------------------------+
+</pre>
+
+<p>
+4.把 master 备份文件传到 slave 从库机器，进行数据恢复<br >
+</p>
+
+<pre class="example">
+$ scp master-backup.sql root@192.168.1.102:/root
+</pre>
+
+<p>
+5.在 slave 机器上停止从库的同步状态<br >
+</p>
+
+<pre class="example">
+mysql&gt; stop slave;
+</pre>
+
+<p>
+6.然后在 slave 从库机器上执行导入 master-backup.sql 数据备份<br >
+</p>
+
+<pre class="example">
+mysql&gt; source /root/master-backup.sql
+</pre>
+
+<p>
+7.设置 slave 从库同步，注意该处的同步点，就是 master 主库 'show master status' 信息里的 File 和 Position 两个字段的值<br >
+</p>
+
+<pre class="example">
+mysql&gt; change master to master_host = '192.168.1.100',
+                        master_user = 'repluser',
+                        master_port=3306,
+                        master_password='123456',
+                        master_log_file = 'mysqld-bin.000001',
+                        master_log_pos=3260;
+</pre>
+
+<p>
+8.重新开启从同步<br >
+</p>
+
+<pre class="example">
+mysql&gt; start slave;
+</pre>
+
+<p>
+9.查看同步状态<br >
+</p>
+
+<pre class="example">
+mysql&gt; show slave status\G
+</pre>
+
+<p>
+确认 Slave_IO_Running: Yes 和 Slave_SQL_Running: Yes 都为 'Yes' 就表示主从同步正常<br >
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> MySQL从库同步慢问题</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+检查 slave 服务器 io thread 和 sql thread 状态<br >
+</p>
+
+<pre class="example">
+mysql&gt; show slave status;
+</pre>
+
+<p>
+slave 服务器正常空闲状态是下面这样<br >
+</p>
+
+<pre class="example">
+Slave_IO_State: Waiting for master to send event
+Slave_IO_Running: Yes
+Seconds_Behind_Master: 0
+</pre>
+
+<p>
+slave 服务器 sql thread 慢的表现为<br >
+</p>
+
+<pre class="example">
+Seconds_Behind_Master 值越来越大
+</pre>
+
+<p>
+slave 服务器 io thread 慢的表现为<br >
+</p>
+
+<pre class="example">
+Slave_IO_State: Waiting for master to send event
+Seconds_Behind_Master: 313
+Slave_SQL_Running_State: Reading event from the relay log
+</pre>
+
+<p>
+当服 slave 务器磁盘 IO 速度比较低的时候会导致 slave 服务器同步速度跟不上其他从服务器，需要调整相关 MySQL 参数<br >
+</p>
+
+<pre class="example">
+mysql&gt; set global sync_binlog = 20;
+mysql&gt; set global innodb_flush_log_at_trx_commit = 2;
+</pre>
+
+<p>
+  sync_binlog 默认为 0，类似操作系统的磁盘文件刷新同步机制，MySQL 不会同步到磁盘中去而是依赖操作系统来刷新 binary log。当 sync_binlog =N (N&gt;0) ，MySQL 在每写 N 次二进制日志 binary log 时，会使用 fdatasync() 函数将它的写二进制日志 binary log 同步到磁盘中去。如果启用了 autocommit，那么每一个语句 statement 就会有一次写操作，否则每个事务对应一个写操作。<br >
+而且 autocommit 默认为开启<br >
+</p>
+
+<p>
+如果 innodb_flush_log_at_trx_commit 设置为 0，log buffer 将每秒一次地写入 log file 中，并且 log file 的 flush (刷到磁盘)操作同时进行。该模式下，在事务提交的时候，不会主动触发写入磁盘的操作。<br >
+</p>
+
+<p>
+如果 innodb_flush_log_at_trx_commit 设置为 1，每次事务提交时 MySQL 都会把 log buffer 的数据写入 log file，并且 flush (刷到磁盘)中去.<br >
+</p>
+
+<p>
+如果 innodb_flush_log_at_trx_commit 设置为 2，每次事务提交时 MySQL 都会把 log buffer 的数据写入 log file 但是 flush (刷到磁盘)操作并不会同时进行。该模式下, MySQL 会每秒执行一次 flush (刷到磁盘)操作。<br >
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: typefo</p>
+<p class="date">Created: 2017-03-15 周三 14:53</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

@@ -20,9 +20,13 @@ class CdrModel {
         if ($this->db) {
             $sql = 'SELECT * FROM cdr WHERE ';
 
+            if (isset($where['last'])) {
+                $sql .= 'id < :id ';
+            }
+            
             if (isset($where['caller'])) {
                 if (is_string($where['caller']) && mb_strlen($where['caller']) > 0) {
-                    $sql .= 'caller = :caller ';		    
+                    $sql .= isset($where['last']) ? 'AND caller = :caller ' : 'caller = :caller';
                 } else {
                     unset($where['caller']);
                 }
@@ -30,24 +34,25 @@ class CdrModel {
 
             if (isset($where['called'])) {
                 if (is_string($where['called']) && mb_strlen($where['called']) > 0) {
-                    if (isset($where['caller'])) {
-                        $sql .= 'AND called = :called ';
-                    } else {
-                        $sql .= 'called = :called ';
-                    }
+                    $sql .= isset($where['caller']) ? 'AND called = :called ' : $sql .= 'called = :called ';;
                 } else {
                     unset($where['called']);
                 }
             }
 
-            if (isset($where['caller']) || isset($where['called'])) {
-                $sql .= 'AND duration > :duration AND create_time BETWEEN :begin AND :end ORDER BY id DESC LIMIT 150';
+            if (isset($where['last']) || isset($where['caller']) || isset($where['called'])) {
+                $sql .= 'AND duration > :duration AND create_time BETWEEN :begin AND :end ORDER BY id DESC LIMIT 45';
             } else {
-                $sql .= 'duration > :duration AND create_time BETWEEN :begin AND :end ORDER BY id DESC LIMIT 150';
+                $sql .= 'duration > :duration AND create_time BETWEEN :begin AND :end ORDER BY id DESC LIMIT 45';
             }
 
             $sth = $this->db->prepare($sql);
 
+            if (isset($where['last'])) {
+                $id = Filter::number($where['last']);
+                $sth->bindParam(':id', $id, PDO::PARAM_INT);
+            }
+            
             if (isset($where['caller'])) {
                 $caller = Filter::alpha($where['caller']);
     	        $sth->bindParam(':caller', $caller, PDO::PARAM_STR);
