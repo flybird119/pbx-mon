@@ -27,10 +27,10 @@ function loadMore() {
     }
 
     if (append) {
-        arg += '&duration=' + billsec;
+        arg += '&duration=' + duration;
         append = true;
     } else {
-        arg += 'duration=' + billsec;
+        arg += 'duration=' + duration;
     }
 
     if (append) {
