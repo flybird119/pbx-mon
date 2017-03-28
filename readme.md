@@ -1,15 +1,13 @@
-基于 FreeSWITCH 的录音质检系统
+基于 FreeSWITCH 的 pbx 网关，内置录音质检系统，通话记录采用 mod_json_cdr 模块 + Web API 存储
 
 ![screenshot](./script/screenshot.png)
+
+### 服务器环境
 
 - 操作系统: CentOS 7.2
 - PBX系统： FreeSWITCH 1.6.15
 - 数据库 :  MariaDB 5.5
 - PHP框架:  Yaf 2.3.5
-
-### Web 截图
-
-
 
 ### 相关目录说明:
 ```
