@@ -72,9 +72,9 @@
             <label>主叫号码: </label>
 	        <?php
 	          if (isset($where['caller'])) {
-	            echo '<input type="text" class="form-control input-sm caller" placeholder="请输入主叫号码" name="caller" value="',$where['caller'],'" />';
+	            echo '<input type="text" id="caller" class="form-control input-sm caller" placeholder="请输入主叫号码" name="caller" value="',$where['caller'],'" />';
 	          } else {
-	            echo '<input type="text" class="form-control input-sm caller" placeholder="请输入主叫号码" name="caller" value=""/>';
+	            echo '<input type="text" id="caller" class="form-control input-sm caller" placeholder="请输入主叫号码" name="caller" value=""/>';
 	          }
 	        ?>
           </div>
@@ -82,9 +82,9 @@
             <label>被叫号码: </label>
 	        <?php
 	          if (isset($where['called'])) {
-	            echo '<input type="text" class="form-control input-sm called" placeholder="请输入被叫号码" name="called" value="',$where['called'],'" />';
+	            echo '<input type="text" id="called" class="form-control input-sm called" placeholder="请输入被叫号码" name="called" value="',$where['called'],'" />';
 	          } else {
-	            echo '<input type="text" class="form-control input-sm called" placeholder="请输入被叫号码" name="called" value=""/>';
+	            echo '<input type="text" id="called" class="form-control input-sm called" placeholder="请输入被叫号码" name="called" value=""/>';
 	          }
 	        ?>
           </div>
@@ -92,9 +92,9 @@
             <label>通话时长: </label>
 	        <?php
 	          if (isset($where['duration'])) {
-	            echo '<input type="number" class="form-control input-sm talktime" name="duration" min="0" value="',$where['duration'],'" />';
+	            echo '<input type="number" id="duration" class="form-control input-sm talktime" name="duration" min="0" value="',$where['duration'],'" />';
 	          } else {
-	            echo '<input type="number" class="form-control input-sm talktime" name="duration" min="0" value="0" />';
+	            echo '<input type="number" id="duration" class="form-control input-sm talktime" name="duration" min="0" value="0" />';
 	          }
 	        ?>
           </div>
@@ -106,7 +106,7 @@
           <thead>
             <tr><th>ID</th><th>主叫号码</th><th>被叫号码</th><th>通话时长</th><th>来源 IP</th><th>路由前缀</th><th>通话时间</th><th>录音试听</th><th>录音下载</th></tr>
           </thead>
-          <tbody>
+          <tbody id="data">
 	        <?php
 	          if ($data) {
 	            foreach ($data as $obj) {
@@ -117,6 +117,17 @@
           </tbody>
         </table>
       </div>
+      <?php
+      if ($data && count($data) >= 45) {
+        echo '<div id="loading">',"\n";
+        echo '<nav>',"\n";
+        echo '<ul class="pager">',"\n";
+        echo '<li><a href="javascript:;" onClick="loadMore()">点击这里，加载更多 &middot;&middot;&middot;</a></li>',"\n";
+        echo '</ul>',"\n";
+        echo '</nav>',"\n";
+        echo '</div>',"\n";
+      }
+      ?>
     </div>
   </body>
   <script type="text/javascript" src="/js/jquery.min.js"></script>
@@ -160,5 +171,7 @@
         content: html
       });
     }
+
+    <?php if (isset($last) && $last > 0) echo 'last = ',$last,';';?>
   </script>
 </html>

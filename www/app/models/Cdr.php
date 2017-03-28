@@ -21,7 +21,11 @@ class CdrModel {
             $sql = 'SELECT * FROM cdr WHERE ';
 
             if (isset($where['last'])) {
-                $sql .= 'id < :id ';
+                if (intval($where['last']) > 0) {
+                    $sql .= 'id < :id ';
+                } else {
+                    unset($where['last']);
+                }
             }
             
             if (isset($where['caller'])) {
