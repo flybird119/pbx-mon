@@ -1,0 +1,73 @@
+
+body {
+    color: #555555;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+table th {
+    text-align: center;
+}
+
+table tr td {
+    text-align: center;
+}
+
+.table>thead>tr>th, .table>tbody>tr>td {
+    border-top: 1px solid #fafafa;
+    border-bottom: 1px solid #fafafa;
+}
+
+.form-group input {
+    font-weight: solid;
+}
+
+.main {
+    margin-top: -5px;
+}
+
+.breadcrumb {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.form-inline {
+    padding-left: 12px;
+}
+
+.table {
+    margin-top: 10px;
+}
+
+.query {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.form-group .start, .form-group .end {
+    width: 120px;
+    font-weight: solid;
+}
+
+.form-group .caller, .form-group .called {
+    width: 120px;
+
+}
+
+.form-group .talktime {
+    width: 80px;
+    font-weight: solid;
+}
+
+form .btn {
+    margin-left: 25px;
+}
+
+.pager {
+    margin-top: 5px;
+    margin-bottom: 25px;
+}

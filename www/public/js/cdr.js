@@ -47,11 +47,8 @@ function loadMore() {
         arg += 'called=' + called;
     }
 
-    reqwest({
-        url: '/cdr/ajxquery?' + arg,
-        method: 'get',
-        success: function (resp) {
-            var obj = JSON.parse(resp);
+    $.get('/cdr/ajxquery?' + arg, function (resp, status) {
+            var obj = resp;
             
             if (obj.status != 200) {
                 alert('Error: ' + obj.status + ' ' + obj.message);
@@ -72,13 +69,12 @@ function loadMore() {
                     "'" + obj.data[i].file + "'" +
                     ')"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> 试 听</a></td>' +
                     '<td><a href="/record/' + obj.data[i].file + '">本地下载</a></td></tr>';
-                $(str).appendTo("#list");
+                $(text).appendTo("#data");
             }
             if (obj.data.length < 45) {
                 $("#loading").css("display","none");
             }
-        }
-    });
+        });
 }
 
 function getForSeconds(totalSeconds) {  
