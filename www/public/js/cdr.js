@@ -8,7 +8,7 @@ function loadMore() {
     var called = $('#called').val();
 
     if (last > 0) {
-        arg += 'id=' + last.toString();
+        arg += 'last=' + last.toString();
         append = true;
     }
 
@@ -52,6 +52,12 @@ function loadMore() {
         method: 'get',
         success: function (resp) {
             var obj = JSON.parse(resp);
+            
+            if (obj.status != 200) {
+                alert('Error: ' + obj.status + ' ' + obj.message);
+                return;
+            }
+            
             last = obj.last;
             for (var i in obj.data) {
                 var text = '<tr>' +
