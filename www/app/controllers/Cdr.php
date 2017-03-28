@@ -21,7 +21,7 @@ class CdrController extends Yaf\Controller_Abstract {
             $data = $cdr->query($where);
             $this->getView()->assign("data", $data);
             $this->getView()->assign("where", $this->check($where));
-            $this->getView()->assert('last', intval($data[count($data) - 1]['id']));
+            $this->getView()->assign('last', intval($data[count($data) - 1]['id']));
         } else {
             $this->getView()->assign("data", null);
             $this->getView()->assign("where", null);

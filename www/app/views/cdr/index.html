@@ -134,6 +134,7 @@
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js"></script>
   <script type="text/javascript" src="/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="/js/reqwest.min.js"></script>
   <script type="text/javascript" src="/js/layer.js"></script>
   <script type="text/javascript">
     // datetimepicker
@@ -172,6 +173,6 @@
       });
     }
 
-    <?php if (isset($last) && $last > 0) echo 'last = ',$last,';';?>
+    <?php if (isset($last) && $last > 0) echo 'last = ',$last,";\n";?>
   </script>
 </html>
