@@ -1,4 +1,6 @@
-### 基于 FreeSWITCH 的录音质检系统
+基于 FreeSWITCH 的录音质检系统
+
+![screenshot](./script/screenshot.png)
 
 - 操作系统: CentOS 7.2
 - PBX系统： FreeSWITCH 1.6.15
@@ -7,7 +9,7 @@
 
 ### Web 截图
 
-![screenshot](./script/screenshot.png)
+
 
 ### 相关目录说明:
 ```
