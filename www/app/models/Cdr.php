@@ -30,7 +30,7 @@ class CdrModel {
             
             if (isset($where['caller'])) {
                 if (is_string($where['caller']) && mb_strlen($where['caller']) > 0) {
-                    $sql .= isset($where['last']) ? 'AND caller = :caller ' : 'caller = :caller';
+                    $sql .= isset($where['last']) ? 'AND caller = :caller ' : 'caller = :caller ';
                 } else {
                     unset($where['caller']);
                 }
@@ -38,7 +38,7 @@ class CdrModel {
 
             if (isset($where['called'])) {
                 if (is_string($where['called']) && mb_strlen($where['called']) > 0) {
-                    $sql .= isset($where['caller']) ? 'AND called = :called ' : $sql .= 'called = :called ';;
+                    $sql .= isset($where['caller']) ? 'AND called = :called ' : 'called = :called ';
                 } else {
                     unset($where['called']);
                 }
