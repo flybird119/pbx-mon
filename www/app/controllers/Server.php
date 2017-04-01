@@ -9,8 +9,10 @@
 class ServerController extends Yaf\Controller_Abstract {
 
     public function statusAction() {
+        $server = new ServerModel();
+
+        $this->getView()->assign("status", $server->sysInfo());
         return true;
 	}
 }
-
 
