@@ -1,12 +1,12 @@
 <?php
 
 /*
- * The User Model
+ * The Server Model
  * Link http://github.com/typefo/pbx-mon
  * By typefo <typefo@qq.com>
  */
 
-class UserModel {
+class ServerModel {
 
     public function sysInfo($esl = null) {
         $status['uptime'] = $this->getUptime();
