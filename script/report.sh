@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 DB='pbxmon'
 PASS='123456'
