@@ -7,18 +7,5 @@
 	    <action application="deflect" data="${destination_number}"/>
       </condition>
     </extension>
-
-    <extension name="default">
-      <condition field="destination_number" expression="^86(.*)">
-	    <action application="set" data="call_timeout=60"/>
-	    <action application="set" data="ringback=${cn-ring}"/>
-	    <action application="set" data="RECORD_STEREO=false"/>
-	    <action application="set" data="RECORD_ANSWER_REQ=true"/>
-	    <action application="record_session" data="/var/record/${strftime(%Y/%m/%d}/${caller_id_number}-${destination_number}-${uuid}.wav"/>
-	    <action application="bridge" data="sofia/external/$1@1.2.3.4:5060"/>
-	    <action application="hangup"/>
-      </condition>
-    </extension>
-
   </context>
 </include>
