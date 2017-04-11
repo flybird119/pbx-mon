@@ -194,7 +194,7 @@ class GatewayModel {
                         $xml .= '        <action application="set" data="RECORD_STEREO=false"/>' . "\n";
                         $xml .= '        <action application="set" data="RECORD_ANSWER_REQ=true"/>' . "\n";
                         $xml .= '        <action application="record_session" data="/var/record/${strftime(%Y/%m/%d}/${caller_id_number}-${called}-${uuid}.wav"/>' . "\n";
-                        $xml .= '        <action application="bridge" data="sofia/external/$1@' . $obj['ip'] . ':' . $obj['port'] . '"/>' . "\n";
+                        $xml .= '        <action application="bridge" data="sofia/external/${called}@' . $obj['ip'] . ':' . $obj['port'] . '"/>' . "\n";
                         $xml .= '        <action application="hangup"/>' . "\n";
                         $xml .= '        </condition>' . "\n";
                         $xml .= '    </extension>' . "\n";
