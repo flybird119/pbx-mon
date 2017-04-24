@@ -25,6 +25,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/cdr">录音查询</a></li>
+            <li><a href="/extension/status">分机管理</a></li>
             <li><a href="/access/status">对接网关</a></li>
             <li><a href="/gateway/status">落地网关</a></li>
             <li><a href="/report">数据报表</a></li>
@@ -111,7 +112,7 @@
 	        <?php
 	          if ($data) {
 	            foreach ($data as $obj) {
-                  echo '<tr><td>',$obj['id'],'</td><td>',$obj['caller'],'</td><td>',$obj['called'],'</td><td>',gmstrftime('%H:%M:%S', $obj['duration']),'</td><td>',$obj['src_ip'],'</td><td>',$obj['rpf'],'</td><td>',$obj['create_time'],'</td><td><a href="javascript:;" onClick="show(',"'",$obj['file'],"'",')"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> 试 听</a></td><td><a href="/record/',$obj['file'],'">本地下载</a></td></tr>';
+                  echo '<tr><td>',$obj['id'],'</td><td>',$obj['caller'],'</td><td>',$obj['called'],'</td><td>',gmstrftime('%H:%M:%S', $obj['duration']),'</td><td>',$obj['src_ip'],'</td><td>',$obj['rpf'],'</td><td>',$obj['create_time'],'</td><td><a href="javascript:;" res="' . $obj['file'] . '" onClick="show(this)"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> 试 听</a></td><td><a href="/record/',$obj['file'],'">本地下载</a></td></tr>';
 	            }
 	          }
             ?>
@@ -155,7 +156,8 @@
       var index = layer.load(2, {shade: [0.7,'#fff'], time: 3000});
     });
 
-    function show(file) {
+    function show(obj) {
+      var file = obj.getAttribute("res");
       var html = '<div class="container-fluid">' +
                  '<div class="row text-center" style="height:75px;padding:20px">' +
                  '<audio src="/record/' + file + '" style="width:333px" preload="metadata" autoplay="autoplay" controls="controls">您的浏览器不支持录音试听</audio>' +
